@@ -27,8 +27,36 @@ public class runners {
                 amountOfTimes = a;
             }
         }
-        for(int p = 0; p < Double.parseDouble(amountOfTimes); p++){
-            
+        int complete = 0;
+        double d1 = 0;
+        boolean d1d = true;
+        while(complete < Double.parseDouble(amountOfTimes)){
+            if(d1d == true){
+                if(d1 + Double.parseDouble(pace1) <= Double.parseDouble(miles)){
+                    d1 += Double.parseDouble(pace1);
+                }
+                else{
+                    double last = (Double.parseDouble(miles) - (d1 + Double.parseDouble(pace1)));
+                    double last1 = Double.parseDouble(pace1) - last;
+                    d1 += last;
+                    d1 -= last1;
+                    d1d = false;
+                }
+            }
+            if(d1d == false){
+                if(d1 - Double.parseDouble(pace1) <= 0){
+                    d1 -= Double.parseDouble(pace1);
+                }
+                else{
+                    double last = (0 - (d1 + Double.parseDouble(pace1)));
+                    double last1 = Double.parseDouble(pace1) - last;
+                    d1 -= last;
+                    d1 += last1;
+                    d1d = true;
+                }
+            }
+            System.out.println(String.valueOf(d1));
+            complete++;
         }
     }
 }
